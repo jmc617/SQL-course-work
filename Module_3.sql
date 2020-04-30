@@ -44,14 +44,26 @@ ORDER BY DEP_ID DESC, L_NAME DESC;
 -- department.
 -- [Hint: Use COUNT(*) to retrieve the total count of a column, and then GROUP BY]
 
+SELECT DEP_ID, COUNT(DEP_ID) 
+AS COUNT FROM EMPLOYEES GROUP BY DEP_ID;
+
 -- Query 5B: For each department retrieve the number of employees in the
 -- department, and the average employees salary in the department.
 -- [Hint: Use COUNT(*) to retrieve the total count of a column, and AVG() function to
 -- compute average salaries, and then group]
 
+SELECT DEP_ID, COUNT(*), AVG(SALARY)
+FROM EMPLOYEES
+GROUP BY DEP_ID;
+
 -- Query 5C: Label the computed columns in the result set of Query 5B as
 -- “NUM_EMPLOYEES” and “AVG_SALARY”.
 -- [Hint: Use AS “LABEL_NAME” after the column name]
+
+-- continue here
+SELECT DEP_ID, COUNT(*), AVG(SALARY)
+FROM EMPLOYEES
+GROUP BY DEP_ID;
 
 -- Query 5D: In Query 5C order the result set by Average Salary.
 -- [Hint: Use ORDER BY after the GROUP BY]
