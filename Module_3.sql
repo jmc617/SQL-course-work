@@ -61,12 +61,16 @@ GROUP BY DEP_ID;
 -- [Hint: Use AS “LABEL_NAME” after the column name]
 
 -- continue here
-SELECT DEP_ID, COUNT(*), AVG(SALARY)
+SELECT DEP_ID, COUNT(*) AS "NUM_EMPLOYEES", AVG(SALARY) AS "AVG_SALARY"
 FROM EMPLOYEES
 GROUP BY DEP_ID;
 
 -- Query 5D: In Query 5C order the result set by Average Salary.
 -- [Hint: Use ORDER BY after the GROUP BY]
+SELECT DEP_ID, COUNT(*) AS "NUM_EMPLOYEES", AVG(SALARY) AS "AVG_SALARY"
+FROM EMPLOYEES
+GROUP BY DEP_ID
+ORDER BY AVG_SALARY
 
 -- Query 5E: In Query 5D limit the result to departments with fewer than 4
 -- employees.
@@ -74,10 +78,18 @@ GROUP BY DEP_ID;
 -- HAVING clause instead of the column label.
 -- Note: WHERE clause is used for filtering the entire result set whereas the HAVING
 -- clause is used for filtering the result of the grouping]
-
+SELECT DEP_ID, COUNT(*) AS "NUM_EMPLOYEES", AVG(SALARY) AS "AVG_SALARY"
+FROM EMPLOYEES
+GROUP BY DEP_ID
+HAVING COUNT(*) < 4
+ORDER BY AVG_SALARY
 -- BONUS Query 6: Similar to 4B but instead of department ID use department
 -- name. Retrieve a list of employees ordered by department name, and within
 -- each department ordered alphabetically in descending order by last name.
 -- [Hint: Department name is in the DEPARTMENTS table. So your query will need to
 -- retrieve data from more than one table. Don’t worry if you are not able to figure this
 -- one out … we’ll cover working with multiple tables in the next lesson.] 
+select D.DEP_NAME , E.F_NAME, E.L_NAME
+from EMPLOYEES as E, DEPARTMENTS as D
+where E.DEP_ID = D.DEPT_ID_DEP
+order by D.DEP_NAME, E.L_NAME desc ;
