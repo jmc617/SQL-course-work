@@ -44,3 +44,11 @@ while ibm_db.fetch_row(selectStmt) != False:
 #update table 
 updateQuery = "update INSTRUCTOR set CITY='MOOSETOWN' where FNAME='Rav'"
 updateStmt = ibm_db.exec_immediate(conn, updateQuery)
+
+#make a graph using result of SQL query in python
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+
+income_vs_hardship = %sql SELECT per_capita_income_, hardship_index FROM chicago_socioeconomic_data;
+plot = sns.jointplot(x='per_capita_income_',y='hardship_index', data=income_vs_hardship.DataFrame())
